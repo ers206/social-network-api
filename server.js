@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 mongoose.connect(
     // does Pizza need to be capitalized 
-    process.env.MONGODB_URI || 'mongodb://localhost:27017/pizza-hunt',
+    process.env.MONGODB_URI || 'mongodb://localhost:27017/social-network-api',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

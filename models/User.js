@@ -1,40 +1,31 @@
 // from pizzahunt will need to change pizza to users 
 
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+// not needed 
+// const dateFormat = require('../utils/dateFormat');
 
-const PizzaSchema = new Schema(
+const UserSchema = new Schema(
   {
-    pizzaName: {
+    username: {
       type: String,
+// It says "Unique" in mod 18 docs 
+      // unique:    
       required: true,
       trim: true
     },
-    createdBy: {
+    email: {
       type: String,
       required: true,
-      trim: true
+      // unique: 
+      // must match a valid email (look into mongoose matching vallidation) 
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
-    },
-    size: {
-      type: String,
-      required: true,
-      enum: ['Personal', 'Small', 'Medium', 'Large', 'Extra Large'],
-      default: 'Large'
-    },
-    toppings: [],
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-      }
-    ]
+    // array of _id values referencing the Though model/ that wat needs to be in thoughts 
+    thoughts: [],
+    // Array of _id values referencing the User model (self-reference) 
+    friends: [],
   },
   {
+    // below is from mod 
     toJSON: {
       virtuals: true,
       getters: true
@@ -45,13 +36,14 @@ const PizzaSchema = new Schema(
 );
 
 // get total count of comments and replies on retrieval
-PizzaSchema.virtual('commentCount').get(function() {
-  return this.comments.reduce(
-    (total, comment) => total + comment.replies.length + 1,
+// changed comments to friends and comment to friend 
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.reduce(
+    (total, friend) => total + friend.replies.length + 1,
     0
   );
 });
 
-const Pizza = model('Pizza', PizzaSchema);
+const User = model('User', UserSchema);
 
-module.exports = Pizza;
+module.exports = User;
