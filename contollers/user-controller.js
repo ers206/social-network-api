@@ -1,18 +1,18 @@
 // from pizza-hunt will need to change pizza to users 
 
-const { Pizza } = require('../models');
+const { User } = require('../models');
 
-const pizzaController = {
+const userController = {
   // get all pizzas
-  getAllPizza(req, res) {
-    Pizza.find({})
+  getAllUser(req, res) {
+    User.find({})
       .populate({
-        path: 'comments',
+        path: 'thoughts',
         select: '-__v'
       })
       .select('-__v')
       .sort({ _id: -1 })
-      .then(dbPizzaData => res.json(dbPizzaData))
+      .then(dbUserData => res.json(dbUserData))
       .catch(err => {
         console.log(err);
         res.sendStatus(400);
@@ -20,14 +20,14 @@ const pizzaController = {
   },
 
   // get one pizza by id
-  getPizzaById({ params }, res) {
-    Pizza.findOne({ _id: params.id })
+  getUserById({ params }, res) {
+    User.findOne({ _id: params.id })
       .populate({
-        path: 'comments',
+        path: 'thoughts',
         select: '-__v'
       })
       .select('-__v')
-      .then(dbPizzaData => res.json(dbPizzaData))
+      .then(dbUserData => res.json(dbUserData))
       .catch(err => {
         console.log(err);
         res.sendStatus(400);
@@ -35,34 +35,34 @@ const pizzaController = {
   },
 
   // createPizza
-  createPizza({ body }, res) {
-    Pizza.create(body)
-      .then(dbPizzaData => res.json(dbPizzaData))
+  createUser({ body }, res) {
+    User.create(body)
+      .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
   },
 
   // update pizza by id
-  updatePizza({ params, body }, res) {
-    Pizza.findOneAndUpdate({ _id: params.id }, body, {
+  updateUser({ params, body }, res) {
+    User.findOneAndUpdate({ _id: params.id }, body, {
       new: true,
       runValidators: true
     })
-      .then(dbPizzaData => {
-        if (!dbPizzaData) {
+      .then(dbUserData => {
+        if (!dbUserData) {
           res.status(404).json({ message: 'No pizza found with this id!' });
           return;
         }
-        res.json(dbPizzaData);
+        res.json(dbUserData);
       })
       .catch(err => res.json(err));
   },
 
   // delete pizza
-  deletePizza({ params }, res) {
-    Pizza.findOneAndDelete({ _id: params.id })
-      .then(dbPizzaData => res.json(dbPizzaData))
+  deleteUser({ params }, res) {
+    User.findOneAndDelete({ _id: params.id })
+      .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
   }
 };
 
-module.exports = pizzaController;
+module.exports = userController;
