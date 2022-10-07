@@ -1,5 +1,5 @@
-// from pizzahunt will need to change pizza to users 
 
+import { isEmail } from 'validator';
 const { Schema, model } = require('mongoose');
 // not needed 
 // const dateFormat = require('../utils/dateFormat');
@@ -8,21 +8,32 @@ const UserSchema = new Schema(
   {
     username: {
       type: String,
-// It says "Unique" in mod 18 docs 
-      // unique:    
+      unique: true,    
       required: true,
       trim: true
     },
     email: {
       type: String,
       required: true,
-      // unique: 
+      unique: true, 
       // must match a valid email (look into mongoose matching vallidation) 
+      validate: [ isEmail, 'invalid email' ]
     },
     // array of _id values referencing the Though model/ that wat needs to be in thoughts 
-    thoughts: [],
+   
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ],
     // Array of _id values referencing the User model (self-reference) 
-    friends: [],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
   },
   {
     // below is from mod 

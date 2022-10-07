@@ -1,4 +1,4 @@
-// from pizzahunt change pizza to user 
+
 
 const router = require('express').Router();
 const {
@@ -7,7 +7,7 @@ const {
     createUser,
     updateUser,
     deleteUser
-  } = require('../../controllers/pizza-controller');
+  } = require('../../controllers/user-controller');
 
 router
 .route('/')

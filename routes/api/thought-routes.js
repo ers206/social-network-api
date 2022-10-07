@@ -1,4 +1,4 @@
-// from pizzahunt comments will be changed to thoughts 
+
 
 const router = require('express').Router();
 const {
@@ -18,7 +18,7 @@ router
   .delete(removeThought);
 
 // /api/comments/<pizzaId>/<commentId>/<replyId>
-router.route('/:userId/:thoughtId/:reactionId').delete(removeReply);
+router.route('/:userId/:thoughtId/:reactionId').delete(removeReaction);
 
 module.exports = router;
 
