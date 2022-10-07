@@ -1,8 +1,8 @@
 
-import { isEmail } from 'validator';
+// import { isEmail } from 'validator';
 const { Schema, model } = require('mongoose');
 // not needed 
-// const dateFormat = require('../utils/dateFormat');
+const dateFormat = require('../utils/dateFormat');
 
 const UserSchema = new Schema(
   {
@@ -17,7 +17,7 @@ const UserSchema = new Schema(
       required: true,
       unique: true, 
       // must match a valid email (look into mongoose matching vallidation) 
-      validate: [ isEmail, 'invalid email' ]
+      // validate: [ isEmail, 'invalid email' ]
     },
     // array of _id values referencing the Though model/ that wat needs to be in thoughts 
    

@@ -3,7 +3,7 @@
 // from pizza-hunt reply and comments change to thoughts and reactions 
 
 const { Schema, model, Types } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+// const dateFormat = require('../utils/dateFormat');
 
 
 const ReactionSchema = new Schema(
@@ -19,16 +19,17 @@ const ReactionSchema = new Schema(
       // type: String,
       // required: true, 
       // 280 character max 
-      name: {type: String, required: true, maxLength: 280}
+      type: String, 
+      required: true, 
+      maxLength: 280
       
     },
     createdAt: {
       type: Date,
       default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
+      // get: createdAtVal => dateFormat(createdAtVal)
     },
     // use ThoughtSchema to validate data for a reply
-    replies: [ThoughtSchema]
   },
   
   {
@@ -44,14 +45,17 @@ const ReactionSchema = new Schema(
     {
     
       thoughtText: {
+        // type: String,
+        // required: true,
         type: String,
-        required: true,
+         required: true,
+         maxLength: 280
       // must be between 1 and 280 characters 
       },
       createdAt: {
         type: Date,
         default: Date.now,
-        get: createdAtVal => dateFormat(createdAtVal)
+        // get: createdAtVal => dateFormat(createdAtVal)
       }, 
       username: {
         type: String,
@@ -72,6 +76,6 @@ const ReactionSchema = new Schema(
 //   return this.replies.length;
 // });
 
-const Comment = model('Comment', CommentSchema);
+const Thought = model('Thought', ThoughtSchema);
 
-module.exports = Comment;
+module.exports = Thought;
