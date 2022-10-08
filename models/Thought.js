@@ -45,12 +45,11 @@ const ReactionSchema = new Schema(
     {
     
       thoughtText: {
-        // type: String,
-        // required: true,
-        type: String,
+
+         type: String,
          required: true,
          maxLength: 280
-      // must be between 1 and 280 characters 
+     
       },
       createdAt: {
         type: Date,
@@ -61,7 +60,7 @@ const ReactionSchema = new Schema(
         type: String,
         required: true,
       },
-      // reactions are like replies in pizza hunt 
+      
       reactions:[ReactionSchema]
    },
    {
@@ -72,6 +71,7 @@ const ReactionSchema = new Schema(
     id: false
   }
   );
+  
   // CommentSchema.virtual('replyCount').get(function() {
 //   return this.replies.length;
 // });

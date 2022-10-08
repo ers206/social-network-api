@@ -19,7 +19,7 @@ const UserSchema = new Schema(
       // must match a valid email (look into mongoose matching vallidation) 
       // validate: [ isEmail, 'invalid email' ]
     },
-    // array of _id values referencing the Though model/ that wat needs to be in thoughts 
+   
    
     thoughts: [
       {
@@ -27,7 +27,7 @@ const UserSchema = new Schema(
         ref: 'Thought'
       }
     ],
-    // Array of _id values referencing the User model (self-reference) 
+    
     friends: [
       {
         type: Schema.Types.ObjectId,
@@ -36,7 +36,7 @@ const UserSchema = new Schema(
     ],
   },
   {
-    // below is from mod 
+  
     toJSON: {
       virtuals: true,
       getters: true

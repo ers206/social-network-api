@@ -1,9 +1,9 @@
-// from pizza-hunt will need to change pizza to users 
+
 
 const { User } = require('../models');
 
 const userController = {
-  // get all pizzas
+  // get all users
   getAllUser(req, res) {
     User.find({})
       .populate({
