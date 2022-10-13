@@ -1,24 +1,20 @@
-// var mongoose = require('mongoose');
-// var validate = require('mongoose-validator');
-// from pizza-hunt reply and comments change to thoughts and reactions 
+ 
 
 const { Schema, model, Types } = require('mongoose');
-// const dateFormat = require('../utils/dateFormat');
+const dateFormat = require('../utils/dateFormat');
 
 
 const ReactionSchema = new Schema(
   {
     reactionId: {
       // Use Mongoose's ObjectId data type
-      // Default value is set to a new ObjectId/ from mod below in reply schema
+
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()  
       
     },
     reactionBody: {
-      // type: String,
-      // required: true, 
-      // 280 character max 
+
       type: String, 
       required: true, 
       maxLength: 280
@@ -27,13 +23,13 @@ const ReactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // get: createdAtVal => dateFormat(createdAtVal)
+      
     },
-    // use ThoughtSchema to validate data for a reply
+    
   },
   
   {
-    // from mod below 
+    
     toJSON: {
       getters: true
     }
@@ -54,7 +50,6 @@ const ReactionSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now,
-        // get: createdAtVal => dateFormat(createdAtVal)
       }, 
       username: {
         type: String,
@@ -72,9 +67,6 @@ const ReactionSchema = new Schema(
   }
   );
   
-  // CommentSchema.virtual('replyCount').get(function() {
-//   return this.replies.length;
-// });
 
 const Thought = model('Thought', ThoughtSchema);
 

@@ -19,9 +19,11 @@ router
 .route('/:userId')
 .post(addThought);
 
+
 router 
 .route('/:thoughtId')
-.get(getThoughtById)
+.get(getThoughtById);
+
 
 router
   .route('/:userId/:thoughId')
